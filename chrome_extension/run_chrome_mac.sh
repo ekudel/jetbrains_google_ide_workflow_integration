@@ -1,1 +1,1 @@
-/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="VKRemoteDebugUserData"
+/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --user-data-dir="JgiwiDebugUserData"

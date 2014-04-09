@@ -1,1 +1,1 @@
-chrome --profile-directory="VKRemoteDebugProfile"
+chrome --profile-directory="JgiwiDebugProfile"
