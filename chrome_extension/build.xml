@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="chrome_extension">
+  <target name="run_mac">
+    <exec executable="sh">
+      <arg value="run_chrome_mac.sh" />
+    </exec>
+  </target>
+
+  <target name="run_windows">
+    <exec executable="cmd">
+      <arg value="/c" />
+      <arg value="run_chrome.bat" />
+    </exec>
+  </target>
+</project>

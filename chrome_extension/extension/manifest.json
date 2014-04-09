@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+  "background": {
+    "page": "background.html"
+  },
+  "content_scripts": [
+    {
+      "js": [ "jquery.js", "content_script.js" ],
+      "matches": [ "http://youtrack.jetbrains.com/*", "https://youtrack.jetbrains.com/"],
+      "run_at": "document_end"
+    }
+  ],
+  "description": "Integration between JetBrains' YouTrack and AOSP tracker",
+  "minimum_chrome_version": "8",
+  "name": "Jetbrains and Google IDE workflow integration",
+  "permissions": [ "http://youtrack.jetbrains.com/*", "https://youtrack.jetbrains.com/"],
+  "version": "0.0.1"
+}
