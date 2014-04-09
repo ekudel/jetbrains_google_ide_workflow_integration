@@ -5,14 +5,19 @@
   },
   "content_scripts": [
     {
-      "js": [ "jquery.js", "content_script.js" ],
-      "matches": [ "http://youtrack.jetbrains.com/*", "https://youtrack.jetbrains.com/"],
+      "js": [ "jquery.js", "youtrack_content_script.js" ],
+      "matches": [ "http://youtrack.jetbrains.com/*", "https://youtrack.jetbrains.com/*" ],
+      "run_at": "document_end"
+    },
+    {
+      "js": [ "jquery.js", "google_code_content_script.js" ],
+      "matches": [ "https://code.google.com/p/android/issues/entry*" ],
       "run_at": "document_end"
     }
   ],
   "description": "Integration between JetBrains' YouTrack and AOSP tracker",
   "minimum_chrome_version": "8",
   "name": "Jetbrains and Google IDE workflow integration",
-  "permissions": [ "http://youtrack.jetbrains.com/*", "https://youtrack.jetbrains.com/"],
+  "permissions": [ "http://youtrack.jetbrains.com/*", "https://youtrack.jetbrains.com/" ],
   "version": "0.0.1"
 }
