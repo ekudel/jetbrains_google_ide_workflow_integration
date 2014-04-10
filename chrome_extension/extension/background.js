@@ -13,7 +13,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     else if (messageId == "delete_comment") {
       if (youtrackUrl in youtrackUrl2Comment) {
         delete youtrackUrl2Comment[youtrackUrl];
-        alert(JSON.stringify(youtrackUrl2Comment));
       }
     }
     else if (messageId == "get_comment") {
