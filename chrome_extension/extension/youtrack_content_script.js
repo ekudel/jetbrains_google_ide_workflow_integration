@@ -14,11 +14,11 @@ function initYoutrack() {
   summary = encodeURIComponent(summary);
   var description = $("[id$=\\.description] :first-child").html().replace(/<br>/g, "\n");
   var currentUrl = document.URL;
-  var comment = encodeURIComponent("Originally reported here: " + currentUrl + "\n\n" + description);
+  var comment = "Originally reported here: " + currentUrl + "\n\n" + description;
   var newAospIssueUrl = "https://code.google.com/p/android/issues/entry" +
       "?template=" + template +
       "&summary=" + summary +
-      "&comment=" + comment;
+      "&youtrack_url=" + currentUrl;
   var issues = [];
 
   $("a[href^=https\\:\\/\\/code\\.google\\.com\\/p\\/android\\/issues\\/detail\\?id\\=]").each(function () {
@@ -37,6 +37,18 @@ function initYoutrack() {
   }
   $("[id$=\\.subContent]").append("Related AOSP issues: " + issuesStr +
       "<a target='_blank' href='" + newAospIssueUrl + "'>New</a>");
+  chrome.runtime.sendMessage({
+    "message_id": "set_comment",
+    "youtrack_url": currentUrl,
+    "comment" : comment
+  });
+
+  $(window).unload(function () {
+    chrome.runtime.sendMessage({
+      "message_id": "delete_comment",
+      "youtrack_url": currentUrl
+    });
+  });
 }
 
 initYoutrack();

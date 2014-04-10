@@ -10,6 +10,16 @@ function initGoogleCode() {
   summaryInput.trigger("click");
   var summary = getParam("summary");
   summaryInput.val(summary);
+  var youtrackUrl = getParam("youtrack_url");
+
+  if (youtrackUrl != null) {
+    chrome.runtime.sendMessage({"message_id": "get_comment", "youtrack_url": youtrackUrl}, function (response) {
+      if ("comment" in response) {
+        var comment = response["comment"];
+        $("textarea[name=comment]").val(comment);
+      }
+    });
+  }
 }
 
 initGoogleCode();
