@@ -12,7 +12,7 @@ function initYoutrack() {
     summary = "Android Studio: " + summary;
   }
   summary = encodeURIComponent(summary);
-  var description = $("[id$=\\.description] :first-child").html().replace(/<br>/g, "\n");
+  var description = htmlToText($("[id$=\\.description] :first-child").html());
   var currentUrl = document.URL;
   var comment = "Originally reported here: " + currentUrl + "\n\n" + description;
   var newAospIssueUrl = "https://code.google.com/p/android/issues/entry" +
@@ -49,6 +49,19 @@ function initYoutrack() {
       "youtrack_url": currentUrl
     });
   });
+}
+
+function htmlToText(html) {
+  html = html.replace(/<style([\s\S]*?)<\/style>/gi, '');
+  html = html.replace(/<script([\s\S]*?)<\/script>/gi, '');
+  html = html.replace(/<\/div>/ig, '\n');
+  html = html.replace(/<\/li>/ig, '\n');
+  html = html.replace(/<li>/ig, '  *  ');
+  html = html.replace(/<\/ul>/ig, '\n');
+  html = html.replace(/<\/p>/ig, '\n');
+  html = html.replace(/<br\s*[\/]?>/gi, "\n");
+  html = html.replace(/<[^>]+>/ig, '');
+  return html;
 }
 
 initYoutrack();
