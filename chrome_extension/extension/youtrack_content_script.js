@@ -5,7 +5,7 @@ function initYoutrack() {
     return;
   }
   var type = $("a[title^=Type\\:]").attr("title").substr(6).trim();
-  var template = encodeURIComponent(type == "Feature" ? "Feature request" : "Android Studio bug");
+  var template = encodeURIComponent(type == "Feature" ? "Tools feature request" : "Android Studio bug");
   var summary = $("[id$=\\.issSum]").html().trim();
 
   if (type != "Bug") {
