@@ -5,13 +5,13 @@ function initYoutrack() {
     return;
   }
   var type = $("a[title^=Type\\:]").attr("title").substr(6).trim();
-  var template = encodeURIComponent(type == "Feature" ? "Tools feature request" : "Android Studio bug");
+  var template = encodeString(type == "Feature" ? "Tools feature request" : "Android Studio bug");
   var summary = $("[id$=\\.issSum]").html().trim();
 
   if (type != "Bug") {
     summary = "Android Studio: " + summary;
   }
-  summary = encodeURIComponent(summary);
+  summary = encodeString(summary);
   var description = htmlToText($("[id$=\\.description] :first-child").html());
   var currentUrl = document.URL;
   var comment = "Originally reported here: " + currentUrl + "\n\n" + description;
@@ -36,11 +36,11 @@ function initYoutrack() {
     issuesStr += ", ";
   }
   $("[id$=\\.subContent]").append("Related AOSP issues: " + issuesStr +
-      "<a target='_blank' href='" + newAospIssueUrl + "'>New</a>");
+  "<a target='_blank' href='" + newAospIssueUrl + "'>New</a>");
   chrome.runtime.sendMessage({
     "message_id": "set_comment",
     "youtrack_url": currentUrl,
-    "comment" : comment
+    "comment": comment
   });
 
   $(window).unload(function () {
@@ -62,6 +62,10 @@ function htmlToText(html) {
   html = html.replace(/<br\s*[\/]?>/gi, "\n");
   html = html.replace(/<[^>]+>/ig, '');
   return html;
+}
+
+function encodeString(s) {
+  return encodeURIComponent(s).replace(/'/g, "%27");
 }
 
 initYoutrack();
